@@ -3,7 +3,7 @@
 const wordForm = document.getElementById('word-form');
 const addWordButton = document.getElementById('add-word-btn');
 const startLearningButton = document.getElementById('start-learning-btn');
-const addAnotherWordButton = document.getElementById('add-another-word-btn');
+const startLearningButton2 = document.getElementById('start-learning-btn2');
 const wordListContainer = document.getElementById('word-list-container');
 const wordList = document.getElementById('word-list');
 const learnTheseWordsContainer = document.getElementById('learn-these-words');
@@ -42,8 +42,9 @@ function addWord(event) {
     // 입력된 단어 개수 표시
     updateWordCount();
 
-    // 단어 입력 후, 시작하기 버튼 활성화
+    // 단어 추가 후, 시작하기 버튼 활성화
     startLearningButton.disabled = false;
+    startLearningButton2.disabled = false;
 }
 
 // 시작하기 버튼 클릭 시
@@ -82,14 +83,10 @@ addWordButton.addEventListener('click', addWord);
 startLearningButton.addEventListener('click', function() {
     startLearning();
     startLearningButton.style.display = 'none'; // 시작하기 버튼 숨기기
+    startLearningButton2.style.display = 'none'; // 시작하기 버튼 숨기기
 });
 
-// Next Word 버튼 클릭 이벤트 리스너 등록
-nextWordButton.addEventListener('click', showNextWord);
-
-// 더 단어 추가하기 버튼 클릭 이벤트 리스너 등록
-addAnotherWordButton.addEventListener('click', function() {
-    wordForm.style.display = 'block'; // 단어 입력 폼 보이기
-    wordListContainer.style.display = 'none'; // 단어 목록 숨기기
-    startLearningButton.style.display = 'inline-block'; // 시작하기 버튼 보이기
-});
+startLearningButton2.addEventListener('click', function() {
+  startLearning();
+  startLearningButton.style.display = 'none'; // 시작하기 버튼 숨기기
+  startLearningButton2.style.display = 'none'; //
