@@ -48,25 +48,20 @@ button {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#word-list-container {
-    display: none; /* 입력된 단어 목록은 기본적으로 숨김 */
-    text-align: left; /* 단어 목록 텍스트 왼쪽 정렬 */
-}
-
-#learn-these-words {
-    display: none; /* 학습 페이지도 기본적으로 숨김 */
-}
-
-#start-learning-btn {
-    display: none; /* 시작하기 버튼은 기본적으로 숨김 */
+button[disabled] {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
 #word-list {
     list-style-type: none;
     padding: 0;
-    margin-top: 10px; /* 단어 목록 위 여백 추가 */
+    margin: 0;
 }
 
 #word-list li {
@@ -74,5 +69,5 @@ button {
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-bottom: 5px; /* 단어 목록 아래 여백 추가 */
+    margin-bottom: 5px;
 }
