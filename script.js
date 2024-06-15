@@ -1,33 +1,57 @@
 // script.js
 
-const initialWords = [
-    { word: "Apple", meaning: "A fruit that grows on trees." },
-    { word: "Car", meaning: "A vehicle used for transportation." },
-    { word: "Book", meaning: "A set of written or printed pages." },
-    // Add more initial words as needed
-];
-
-let customWords = []; // 사용자가 추가한 단어 배열
-let gameStarted = false; // 게임 시작 여부를 나타내는 변수
-
+const wordForm = document.getElementById('word-form');
+const learnTheseWordsContainer = document.getElementById('learn-these-words');
 const wordElement = document.getElementById('word');
 const meaningElement = document.getElementById('meaning');
-const startLearningButton = document.getElementById('start-learning-btn');
+const nextWordButton = document.getElementById('next-word-btn');
 
+let words = []; // 입력된 단어들을 저장할 배열
+let currentIndex = -1; // 현재 표시 중인 단어 인덱스
+
+// 단어 추가 함수
+function addWord(event) {
+    event.preventDefault(); // 폼의 기본 동작 방지
+
+    const wordInput = document.getElementById('word');
+    const meaningInput = document.getElementById('meaning');
+
+    const word = wordInput.value.trim();
+    const meaning = meaningInput.value.trim();
+
+    if (word === '' || meaning === '') {
+        alert('영어 단어와 한글 뜻을 모두 입력해주세요.');
+        return;
+    }
+
+    words.push({ word, meaning });
+
+    wordInput.value = '';
+    meaningInput.value = '';
+
+    // 단어 추가 후, 단어 입력 폼을 숨기고 학습 페이지를 보이게 설정
+    if (words.length > 0) {
+        wordForm.style.display = 'none';
+        learnTheseWordsContainer.style.display = 'block';
+        startLearning();
+    }
+}
+
+// 게임 시작 함수
 function startLearning() {
-    gameStarted = true;
-    showNextWord();
-    startLearningButton.style.display = 'none'; // 학습 시작 버튼 숨기기
+    currentIndex = -1; // 인덱스 초기화
+    showNextWord(); // 다음 단어 보여주기
 }
 
+// 다음 단어 보기 함수
 function showNextWord() {
-    const words = customWords.length > 0 ? customWords : initialWords;
-    const randomIndex = Math.floor(Math.random() * words.length);
-    wordElement.textContent = words[randomIndex].word;
-    meaningElement.textContent = words[randomIndex].meaning;
+    currentIndex = (currentIndex + 1) % words.length; // 다음 단어 인덱스 계산
+    wordElement.textContent = words[currentIndex].word;
+    meaningElement.textContent = words[currentIndex].meaning;
 }
 
-startLearningButton.addEventListener('click', startLearning);
+// Next Word 버튼 클릭 이벤트 리스너 등록
+nextWordButton.addEventListener('click', showNextWord);
 
-// 초기에 학습 시작 버튼 보이기
-startLearningButton.style.display = 'block';
+// 단어 입력 폼 submit 이벤트 리스너 등록
+wordForm.addEventListener('submit', addWord);
