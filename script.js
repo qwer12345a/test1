@@ -1,24 +1,33 @@
 // script.js
-const words = [
+
+const initialWords = [
     { word: "Apple", meaning: "A fruit that grows on trees." },
     { word: "Car", meaning: "A vehicle used for transportation." },
     { word: "Book", meaning: "A set of written or printed pages." },
-    // Add more words as needed
+    // Add more initial words as needed
 ];
 
-let currentIndex = -1;
+let customWords = []; // 사용자가 추가한 단어 배열
+let gameStarted = false; // 게임 시작 여부를 나타내는 변수
 
-function showNextWord() {
-    currentIndex = Math.floor(Math.random() * words.length);
-    const wordElement = document.getElementById('word');
-    const meaningElement = document.getElementById('meaning');
-    
-    wordElement.textContent = words[currentIndex].word;
-    meaningElement.textContent = words[currentIndex].meaning;
+const wordElement = document.getElementById('word');
+const meaningElement = document.getElementById('meaning');
+const startLearningButton = document.getElementById('start-learning-btn');
+
+function startLearning() {
+    gameStarted = true;
+    showNextWord();
+    startLearningButton.style.display = 'none'; // 학습 시작 버튼 숨기기
 }
 
-const nextWordButton = document.getElementById('next-word-btn');
-nextWordButton.addEventListener('click', showNextWord);
+function showNextWord() {
+    const words = customWords.length > 0 ? customWords : initialWords;
+    const randomIndex = Math.floor(Math.random() * words.length);
+    wordElement.textContent = words[randomIndex].word;
+    meaningElement.textContent = words[randomIndex].meaning;
+}
 
-// Initialize with the first word
-showNextWord();
+startLearningButton.addEventListener('click', startLearning);
+
+// 초기에 학습 시작 버튼 보이기
+startLearningButton.style.display = 'block';
