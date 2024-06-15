@@ -32,7 +32,7 @@ function addWord(event) {
     // 단어 목록에 추가
     const li = document.createElement('li');
     li.textContent = `${word} - ${meaning}`;
-    wordList.appendChild(li);
+    wordList.insertBefore(li, wordList.firstChild); // 목록 위로 추가
 
     wordInput.value = '';
     meaningInput.value = '';
