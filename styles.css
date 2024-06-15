@@ -4,14 +4,11 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
 .container {
     max-width: 600px;
+    margin: 20px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -23,20 +20,26 @@ h1 {
     color: #333;
 }
 
-#word-display {
+.form-group {
     margin-bottom: 20px;
+    text-align: left;
 }
 
-#word {
-    font-size: 24px;
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-#meaning {
-    font-size: 18px;
-    color: #666;
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-#start-learning-btn {
+button {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #007bff;
