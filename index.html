@@ -3,9 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㅇㅇtest중입니다</title>
+    <title>Daily Word Game</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>test중입니다
-    <h1>Hello, GitHub Pages!ㅇㅇㄴㅁㅇtest중입니다ㅁㄴㅇㅁㄴㅇㅁㄴ</h1>
-</body>test중입니다
+<body>
+    <div id="app">
+        <div id="input-words" class="section">
+            <h2>Enter 10 words to learn</h2>
+            <div id="words-input-container">
+                <!-- Input fields for 10 words will be generated here -->
+            </div>
+            <button id="start-learning">Start Learning</button>
+        </div>
+
+        <div id="learn-words" class="section" style="display:none;">
+            <h2>Learn These Words</h2>
+            <ul id="word-list">
+                <!-- Words to learn will be listed here -->
+            </ul>
+            <button id="start-test">Start Test</button>
+        </div>
+
+        <div id="test-words" class="section" style="display:none;">
+            <h2>Test Your Spelling</h2>
+            <div id="test-questions">
+                <!-- Test questions will be generated here -->
+            </div>
+            <button id="submit-test">Submit Test</button>
+        </div>
+
+        <div id="results" class="section" style="display:none;">
+            <h2>Test Results</h2>
+            <p id="score"></p>
+            <button id="restart">Restart</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>
