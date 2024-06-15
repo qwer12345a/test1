@@ -9,8 +9,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Daily Word Learning 1</h1>
-        <h1>단어 10개 이하를 입력하세</h1>
+        <h1>Daily Word Learning</h1>
+        <p>단어를 입력하고 게임 시작하기 버튼을 누르세요.</p>
         <form id="word-form">
             <div class="form-group">
                 <label for="word">Word (영어 스펠링)</label>
@@ -20,9 +20,13 @@
                 <label for="meaning">Meaning (한글 뜻)</label>
                 <input type="text" id="meaning" name="meaning" required>
             </div>
-            <button type="submit">Add Word</button>
-            <button type="submit">시작하기</button>
+            <button type="button" id="add-word-btn">Add Word</button>
+            <button type="button" id="start-learning-btn" disabled>게임 시작하기</button>
         </form>
+    </div>
+    <div class="container" id="word-list-container" style="display: none;">
+        <h2>입력된 단어 목록</h2>
+        <ul id="word-list"></ul>
     </div>
     <div class="container" id="learn-these-words" style="display: none;">
         <h1>Learn These Words</h1>
