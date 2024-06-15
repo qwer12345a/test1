@@ -38,19 +38,22 @@ function addWord(event) {
     meaningInput.value = '';
 
     // 단어 추가 후, 단어 입력 폼을 숨기고 단어 목록을 보이게 설정
-    if (words.length > 0) {
-        wordForm.style.display = 'none';
-        wordListContainer.style.display = 'block';
+    wordForm.style.display = 'none';
+    wordListContainer.style.display = 'block';
 
-        // 입력된 단어 개수에 따라 시작하기 버튼 활성화
-        if (words.length >= 1) {
-            startLearningButton.disabled = false;
-        }
+    // 입력된 단어 개수에 따라 시작하기 버튼 활성화
+    if (words.length >= 1) {
+        startLearningButton.disabled = false;
     }
 }
 
 // 게임 시작 함수
 function startLearning() {
+    if (words.length === 0) {
+        alert('적어도 하나의 단어를 입력해야 합니다.');
+        return;
+    }
+
     currentIndex = -1; // 인덱스 초기화
     showNextWord(); // 다음 단어 보여주기
 
@@ -61,7 +64,6 @@ function startLearning() {
 
 // 다음 단어 보기 함수
 function showNextWord() {
-    alert('1');
     currentIndex = (currentIndex + 1) % words.length; // 다음 단어 인덱스 계산
     wordElement.textContent = words[currentIndex].word;
     meaningElement.textContent = words[currentIndex].meaning;
