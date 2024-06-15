@@ -57,3 +57,7 @@ button {
 #learn-these-words {
     display: none; /* 학습 페이지도 기본적으로 숨김 */
 }
+
+#start-learning-btn {
+    margin-top: 20px; /* 게임 시작하기 버튼 위 여백 추가 */
+}
