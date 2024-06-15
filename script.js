@@ -3,12 +3,11 @@
 const wordForm = document.getElementById('word-form');
 const addWordButton = document.getElementById('add-word-btn');
 const startLearningButton = document.getElementById('start-learning-btn');
-const startLearningButton2 = document.getElementById('start-learning-btn2');
 const wordListContainer = document.getElementById('word-list-container');
 const wordList = document.getElementById('word-list');
 const learnTheseWordsContainer = document.getElementById('learn-these-words');
-const wordElement = document.getElementById('word');
-const meaningElement = document.getElementById('meaning');
+const wordElement = document.getElementById('display-word');
+const meaningElement = document.getElementById('display-meaning');
 const nextWordButton = document.getElementById('next-word-btn');
 
 let words = []; // 입력된 단어들을 저장할 배열
@@ -39,12 +38,11 @@ function addWord(event) {
     wordInput.value = '';
     meaningInput.value = '';
 
-    // 입력된 단어 개수 표시
-    updateWordCount();
+    // 단어 목록 표시
+    wordListContainer.style.display = 'block';
 
     // 단어 추가 후, 시작하기 버튼 활성화
     startLearningButton.disabled = false;
-    startLearningButton2.disabled = false;
 }
 
 // 시작하기 버튼 클릭 시
@@ -58,6 +56,7 @@ function startLearning() {
     showNextWord(); // 첫 번째 단어 보여주기
 
     // 학습 페이지 보이기
+    wordForm.style.display = 'none';
     wordListContainer.style.display = 'none';
     learnTheseWordsContainer.style.display = 'block';
 }
@@ -69,24 +68,11 @@ function showNextWord() {
     meaningElement.textContent = words[currentIndex].meaning;
 }
 
-// 단어 개수 업데이트 함수
-function updateWordCount() {
-    const wordCount = words.length;
-    const wordCountText = `입력된 단어 수: ${wordCount}`;
-    document.getElementById('word-count').textContent = wordCountText;
-}
-
 // Add Word 버튼 클릭 이벤트 리스너 등록
 addWordButton.addEventListener('click', addWord);
 
 // 시작하기 버튼 클릭 이벤트 리스너 등록
-startLearningButton.addEventListener('click', function() {
-    startLearning();
-    startLearningButton.style.display = 'none'; // 시작하기 버튼 숨기기
-    startLearningButton2.style.display = 'none'; // 시작하기 버튼 숨기기
-});
+startLearningButton.addEventListener('click', startLearning);
 
-startLearningButton2.addEventListener('click', function() {
-  startLearning();
-  startLearningButton.style.display = 'none'; // 시작하기 버튼 숨기기
-  startLearningButton2.style.display = 'none'; //
+// Next Word 버튼 클릭 이벤트 리스너 등록
+nextWordButton.addEventListener('click', showNextWord);
