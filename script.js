@@ -1,7 +1,9 @@
 // script.js
 
 const wordForm = document.getElementById('word-form');
+const addWordButton = document.getElementById('add-word-btn');
 const startLearningButton = document.getElementById('start-learning-btn');
+const addAnotherWordButton = document.getElementById('add-another-word-btn');
 const wordListContainer = document.getElementById('word-list-container');
 const wordList = document.getElementById('word-list');
 const learnTheseWordsContainer = document.getElementById('learn-these-words');
@@ -37,17 +39,14 @@ function addWord(event) {
     wordInput.value = '';
     meaningInput.value = '';
 
-    // 단어 추가 후, 단어 입력 폼을 숨기고 단어 목록을 보이게 설정
-    wordForm.style.display = 'none';
-    wordListContainer.style.display = 'block';
+    // 입력된 단어 개수 표시
+    updateWordCount();
 
-    // 입력된 단어 개수에 따라 시작하기 버튼 활성화
-    if (words.length >= 1) {
-        startLearningButton.disabled = false;
-    }
+    // 단어 입력 후, 시작하기 버튼 활성화
+    startLearningButton.disabled = false;
 }
 
-// 게임 시작 함수
+// 시작하기 버튼 클릭 시
 function startLearning() {
     if (words.length === 0) {
         alert('적어도 하나의 단어를 입력해야 합니다.');
@@ -55,7 +54,7 @@ function startLearning() {
     }
 
     currentIndex = -1; // 인덱스 초기화
-    showNextWord(); // 다음 단어 보여주기
+    showNextWord(); // 첫 번째 단어 보여주기
 
     // 학습 페이지 보이기
     wordListContainer.style.display = 'none';
@@ -69,8 +68,15 @@ function showNextWord() {
     meaningElement.textContent = words[currentIndex].meaning;
 }
 
+// 단어 개수 업데이트 함수
+function updateWordCount() {
+    const wordCount = words.length;
+    const wordCountText = `입력된 단어 수: ${wordCount}`;
+    document.getElementById('word-count').textContent = wordCountText;
+}
+
 // Add Word 버튼 클릭 이벤트 리스너 등록
-document.getElementById('add-word-btn').addEventListener('click', addWord);
+addWordButton.addEventListener('click', addWord);
 
 // 시작하기 버튼 클릭 이벤트 리스너 등록
 startLearningButton.addEventListener('click', function() {
@@ -80,3 +86,10 @@ startLearningButton.addEventListener('click', function() {
 
 // Next Word 버튼 클릭 이벤트 리스너 등록
 nextWordButton.addEventListener('click', showNextWord);
+
+// 더 단어 추가하기 버튼 클릭 이벤트 리스너 등록
+addAnotherWordButton.addEventListener('click', function() {
+    wordForm.style.display = 'block'; // 단어 입력 폼 보이기
+    wordListContainer.style.display = 'none'; // 단어 목록 숨기기
+    startLearningButton.style.display = 'inline-block'; // 시작하기 버튼 보이기
+});
