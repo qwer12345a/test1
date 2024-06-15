@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,17 +22,16 @@
             <button type="button" id="add-word-btn">Add Word</button>
             <button type="button" id="start-learning-btn" disabled>게임 시작하기</button>
         </form>
-    </div>
-    <div class="container" id="word-list-container" style="display: none;">
-        <h2>입력된 단어 목록</h2>
-        <ul id="word-list"></ul>
-        <button type="button" id="start-learning-btn2">게임 시작하기</button>
+        <div id="word-list-container" style="display: none;">
+            <h2>입력된 단어 목록</h2>
+            <ul id="word-list"></ul>
+        </div>
     </div>
     <div class="container" id="learn-these-words" style="display: none;">
         <h1>Learn These Words</h1>
         <div id="word-display">
-            <h2 id="word"></h2>
-            <p id="meaning"></p>
+            <h2 id="display-word"></h2>
+            <p id="display-meaning"></p>
         </div>
         <button id="next-word-btn">Next Word</button>
     </div>
