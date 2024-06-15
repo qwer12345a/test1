@@ -61,6 +61,7 @@ function startLearning() {
 
 // 다음 단어 보기 함수
 function showNextWord() {
+    alert('1');
     currentIndex = (currentIndex + 1) % words.length; // 다음 단어 인덱스 계산
     wordElement.textContent = words[currentIndex].word;
     meaningElement.textContent = words[currentIndex].meaning;
