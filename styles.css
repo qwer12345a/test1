@@ -16,7 +16,7 @@ body {
     text-align: center;
 }
 
-h1 {
+h1, h2, p {
     color: #333;
 }
 
@@ -47,4 +47,13 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-right: 10px;
+}
+
+#word-list-container {
+    display: none; /* 입력된 단어 목록은 기본적으로 숨김 */
+}
+
+#learn-these-words {
+    display: none; /* 학습 페이지도 기본적으로 숨김 */
 }
