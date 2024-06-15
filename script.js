@@ -1,6 +1,9 @@
 // script.js
 
 const wordForm = document.getElementById('word-form');
+const startLearningButton = document.getElementById('start-learning-btn');
+const wordListContainer = document.getElementById('word-list-container');
+const wordList = document.getElementById('word-list');
 const learnTheseWordsContainer = document.getElementById('learn-these-words');
 const wordElement = document.getElementById('word');
 const meaningElement = document.getElementById('meaning');
@@ -26,14 +29,23 @@ function addWord(event) {
 
     words.push({ word, meaning });
 
+    // 단어 목록에 추가
+    const li = document.createElement('li');
+    li.textContent = `${word} - ${meaning}`;
+    wordList.appendChild(li);
+
     wordInput.value = '';
     meaningInput.value = '';
 
-    // 단어 추가 후, 단어 입력 폼을 숨기고 학습 페이지를 보이게 설정
+    // 단어 추가 후, 단어 입력 폼을 숨기고 단어 목록을 보이게 설정
     if (words.length > 0) {
         wordForm.style.display = 'none';
-        learnTheseWordsContainer.style.display = 'block';
-        startLearning();
+        wordListContainer.style.display = 'block';
+
+        // 입력된 단어 개수에 따라 시작하기 버튼 활성화
+        if (words.length >= 1) {
+            startLearningButton.disabled = false;
+        }
     }
 }
 
@@ -41,6 +53,10 @@ function addWord(event) {
 function startLearning() {
     currentIndex = -1; // 인덱스 초기화
     showNextWord(); // 다음 단어 보여주기
+
+    // 학습 페이지 보이기
+    wordListContainer.style.display = 'none';
+    learnTheseWordsContainer.style.display = 'block';
 }
 
 // 다음 단어 보기 함수
@@ -50,8 +66,14 @@ function showNextWord() {
     meaningElement.textContent = words[currentIndex].meaning;
 }
 
+// Add Word 버튼 클릭 이벤트 리스너 등록
+document.getElementById('add-word-btn').addEventListener('click', addWord);
+
+// 시작하기 버튼 클릭 이벤트 리스너 등록
+startLearningButton.addEventListener('click', function() {
+    startLearning();
+    startLearningButton.style.display = 'none'; // 시작하기 버튼 숨기기
+});
+
 // Next Word 버튼 클릭 이벤트 리스너 등록
 nextWordButton.addEventListener('click', showNextWord);
-
-// 단어 입력 폼 submit 이벤트 리스너 등록
-wordForm.addEventListener('submit', addWord);
